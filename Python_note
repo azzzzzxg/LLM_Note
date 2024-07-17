@@ -1,11 +1,36 @@
 1.运算符
   算数运算符：//（整除且只保留整数），**（幂运算）
   逻辑运算符：and,or,not(different from c++）
+
 2.列表
   Def：一个有索引的序列，索引从0开始。
        一个有序的可重复元素序列。
        列表是可变的，列表中的元素可以重复，可以是不同的类型。
-  创建方法：1.alist = [1,2,3,4,5,6] #列表使用[]表示，每个元素之间用,隔开
+
+  创建方法: 1.alist = [1,2,3,4,5,6] #列表使用[]表示，每个元素之间用,隔开
             2.blist = list("hello world!") #列表也可以使用list()函数将其他可迭代的对象转换为列表，比如字符串
 
-  访问元素：1.索引：正向从0-len（alist）~1，反向从-len(alist)~-1
+  访问元素: 1.索引：正向从0-len（alist）~1，反向从-len(alist)~-1(注意range(a,b)函数是从a~b-1)
+            2.切片：list_name[start_index:end_index:step]（注意step缺省为1,start默认第一个元素，end默认最后一个)
+                    同时需要注意，截取的部分索引范围为:start_index~end_index-1,即不包括end_index
+              eg:print('获取所有索引为偶数的元素')
+                 print('alist[::2]: ',alist[::2])
+
+  运算符：+：拼接两个列表，eg：alist+blist
+          *：列表*整数，将列表重复，eg：alist*3
+          in：用于判断某元素是否在列表内，eg：3 in alist
+
+  函数：len(alist),max(alist),min(alist) (函数参数为列表)
+  方法：(有点类似c++结构体/类的内部函数调用)
+        方法名	                        描述	                           返回值
+        list.append(obj)	      在列表末尾添加新元素	                  无，原地操作
+        list.count(obj)	        统计一个元素在列表中出现的次数	        返回该元素出现的次数
+        list.extend(seq)	      将一个序列(eg.[11,12])中的所有元素添加到列表末尾	  无，原地操作
+        list.index(obj)	        从列表中找出某个值第一个匹配项的索引位置	 返回索引
+        list.insert(index, obj)	将元素插入列表中的指定位置	            无，原地操作
+        list.pop([index=-1])	  移除列表中的一个元素（默认最后一个元素），并且返回该元素的值	 返回移除的元素值
+        list.remove(obj)	      移除列表中某个值第一个匹配项	          无，原地操作
+        list.reverse()	        逆向排列列表中的所有元素	              无，原地操作
+        list.sort(key=None,reverse=False)	对列表内元素进行排序，默认为升序	    无，原地操作
+        list.clear()	          清空列表	                            无，原地操作
+        list.copy()	            复制列表	                            复制后的列表
