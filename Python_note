@@ -1,3 +1,4 @@
+具体原文见连接：https://github.com/charleson98/internlm_python_tutorial/blob/main/internlm_summer_camp_python_tutorial.ipynb
 1.运算符
   算数运算符：//（整除且只保留整数），**（幂运算）
   逻辑运算符：and,or,not(different from c++）
@@ -108,7 +109,7 @@
           not in：成员运算符如果字符串中不包含给定的字符返回 True	'M' not in a 输出结果 True
     (与列表基本一样)
 
-  方法：
+  方法：（有点多，用的时候查）
     方法名	功能描述
     capitalize()	将字符串的第一个字符转换为大写
     center(width, fillchar)	返回一个指定的宽度 width 居中的字符串，fillchar 为填充的字符，默认为空格
@@ -132,12 +133,12 @@
     maketrans()	创建字符映射的转换表，对于接受两个参数的最简单的调用方式，第一个参数是字符串，表示需要转换的字符，第二个参数也是字符串表示转换的目标。
     max(str)	返回字符串 str 中最大的字母
     min(str)	返回字符串 str 中最小的字母
-    replace(old, new [, max])	将字符串中的 old 替换成 new,如果 max 指定，则替换不超过 max 次
+    replace(old, new [, max])	将字符串中的 old 替换成 new,如果 max 指定，则替换不超过 max 次，eg.text = text.replace(','," ").replace(':'," ").replace('.'," ")用于去点标点符号
     rfind(str, beg=0,end=len(string))	类似于 find()函数，不过是从右边开始查找.
     rindex( str, beg=0, end=len(string))	类似于 index()，不过是从右边开始
     rjust(width,[, fillchar])	返回一个原字符串右对齐,并使用fillchar(默认空格）填充至长度 width 的新字符串
     rstrip()	删除字符串末尾的空格或指定字符。
-    split(str="", num=string.count(str))	以 str 为分隔符截取字符串，如果 num 有指定值，则仅截取 num+1 个子字符串
+    split(str="", num=string.count(str))	以 str 为分隔符截取字符串，如果 num 有指定值，则仅截取 num+1 个子字符串，eg.使用""分割，提取一句中每个单词（先将标点replace为空格）
     splitlines([keepends])	按照行('\r', '\r\n', \n')分隔，返回一个包含各行作为元素的列表，如果参数 keepends 为 False，不包含换行符，如果为 True，则保留换行符。
     startswith(substr, beg=0,end=len(string))	检查字符串是否是以指定子字符串 substr 开头，是则返回 True，否则返回 False。如果beg 和 end 指定值，则在指定范围内检查。
     strip([chars])	在字符串上执行 lstrip()和 rstrip()
@@ -146,3 +147,29 @@
     translate(table, deletechars="")	根据 table 给出的表(包含 256 个字符)转换 string 的字符, 要过滤掉的字符放到 deletechars 参数中
     zfill (width)	返回长度为 width 的字符串，原字符串右对齐，前面填充0
     isdecimal()	检查字符串是否只包含十进制字符，如果是返回 true，否则返回 false
+      要注意的是，因为字符串是不可修改的对象，所以每个修改字符串的方法都是将修改后的字符串作为一个新对象返回。
+
+  格式化输出：1.使用字符串的.format()方法，并在在字符串中需要插入值的地方用{}代替，{}也可以加入变量名，方便赋值，若没有加入变量名，则按顺序填入。
+              2.使用python在3.6推出的f-sting功能，只需在字符串开头加上f，该字符串中的{}中的python代码就会被评估。
+    eg1:student = {'name':'小明','age':12,'class':"书生浦语实战营第二期",'grade':'优秀学员'}
+        string_templet = '{}在{}岁的时候参加了{}，获得了{}。'#做一个模板
+        print(string_templet.format(student['name'],student['age'],student['class'],student['grade']))
+        #在模板中没有指定变量名时, .format方法就按照顺序来填入值下面来演示一下加入变量名后会有什么不同
+        string_templet2 = "{name}在{age}岁的时候参加了{course}，获得了{grade}。"#做一个模板
+        print(string_templet2.format(grade=student['grade'],name=student['name'],age=student['age'],course=student['class']))
+        #使用这种变量方法命名时, format就可以忽略format参数中的顺序了,对于一些特别长变量特变多的模板来说更清晰。
+    eg2:student = {'name':'小明','age':12,'class':"书生浦语实战营第二期",'grade':'优秀学员'}
+        string_out = f"{student['name']}在{student['age']}岁的时候参加了{student['class']}，获得了{student['grade']}。"
+        print(string_out)
+        print(f"{1+2}")
+    感觉法1更易泛化，每次往模板里“填词”就行，法2更灵活一点。
+
+7.控制结构
+  if-else语句：（相比c++ if（）{}，看起来更简洁，且c++中无elif，要注意elif在python中的使用）
+    if condition_1:
+        statement_block_1
+    elif condition_2:
+        statement_block_2
+    else:
+        statement_block_3
+
