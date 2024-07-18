@@ -49,20 +49,43 @@
   创建方法：集合的创建使用{}表示，并用,隔开，eg:aset = {1,2,3,4,5}。
             注意如果需要创建一个空集合需要使用set(),eg:aset = set()。 
             还可以用set()将其他序列转化为集合eg:alist = [1,1,1,1,2,2,2,2,3,3,3] aset = set(alist)
+  
   常用方法：
-方法名称	                   描述	                          返回值
-add()	                  为集合添加元素	                 无返回值，原地操作
-clear()	                移除集合中的所有元素	             无返回值，原地操作
-copy()	                拷贝一个集合	                   返回拷贝后新创建的集合
-difference()	          返回多个集合的差集	               返回差集结果
-intersection()	        返回集合的交集	                 返回交集结果
-union()	                返回两个集合的并集                返回并集结果
-symmetric_difference()	返回两个集合中不重复的元素集合	   返回两个集合中不重复的元素集合
-isdisjoint()	          判断两个集合是否包含相同的元素	    bool,如果没有返回 True，否则返回 False
-issubset()	            判断指定集合是否为该方法参数集合的子集	bool,如果没有返回 True，否则返回 False
-issuperset()	          判断该方法的参数集合是否为指定集合的子集	bool,如果没有返回 True，否则返回 False
-update()	              合并两个集合，传入的参数必须是一个集合	无返回值，原地操作
-pop()	                  随机移除元素	                    返回被移除的元素
-remove()	              移除指定元素	                    无返回值，原地操作
-discard()	              删除集合中指定的元素	              无返回值，原地操作
- 
+          方法名称	                   描述	                          返回值
+          add()	                  为集合添加元素	                 无返回值，原地操作
+          clear()	                移除集合中的所有元素	             无返回值，原地操作
+          copy()	                拷贝一个集合	                   返回拷贝后新创建的集合
+          difference()	          返回多个集合的差集	               返回差集结果
+          intersection()	        返回集合的交集	                 返回交集结果
+          union()	                返回两个集合的并集                返回并集结果
+          symmetric_difference()	返回两个集合中不重复的元素集合	   返回两个集合中不重复的元素集合
+          isdisjoint()	          判断两个集合是否包含相同的元素	    bool,如果没有返回 True，否则返回 False
+          issubset()	            判断指定集合是否为该方法参数集合的子集(eg.a.issubset(b),如果a是b的子集，则返回true)	bool,如果没有返回 True，否则返回 False
+          issuperset()	          判断该方法的参数集合是否为指定集合的子集	bool,如果没有返回 True，否则返回 False
+          update()	              合并两个集合，传入的参数必须是一个集合	无返回值，原地操作
+          pop()	                  随机移除元素	                    返回被移除的元素
+          remove()	              移除指定元素	                    无返回值，原地操作
+          discard()	              删除集合中指定的元素	              无返回值，原地操作
+  其中remove()：如果元素不存在，会抛出 KeyError;discard()：如果元素不存在，不会有任何错误，也不会改变集合。
+
+5.字典
+  Def：字典是一个无序的可以修改的序列，每一个元素都由一对key与value组成，key为对应value的索引。
+       key不可重复，且需要是不可变对象（可hash，即可通过hash()计算相应哈希值），可以是数字，字符串，元组等，但不能是列表。value可以重复
+
+  创建方法：可以用dict()（用来创建空字典）或者{key1:value1,key2:value2,...}来创建。还记得在集合中我们提过{}能用于创建空集合（？似乎是不能），是因为{}创建的是一个空字典
+            eg.adict = {"list" : [1,2,3],'list2':[1,2,3],'interLM': 'LLM', 1:'summer camp',2:'internLM'}
+
+  访问方式：eg.adict['list'] = [3](修改key为list的元素值，其中[3]表示创建字典)
+               del adict['list2']（表示删除字典中的元素）
+
+  常用方法：
+      方法名	                              描述
+      dict.clear()	                删除字典内所有元素
+      dict.copy()	                  返回一个字典的浅复制
+      dict.fromkeys()	              创建一个新字典，以序列seq中元素做字典的键，val为字典所有键对应的初始值
+      dict.get(key, default=None)	  返回指定键的值，如果键不在字典中返回 default 设置的默认值
+      dict.items()	                返回字典内所有的key value对
+      dict.keys()	                  返回所有的key
+      dict.values()	                返回所有的values
+      dict.update(dict2)	          把字典dict2的键/值对更新到dict里
+      pop(key[,default])	          删除字典 key（键）所对应的值，返回被删除的值。
